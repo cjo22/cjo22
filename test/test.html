@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wish Font Introduction</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- FontAwesome 아이콘 라이브러리 추가 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* 입력창이 다른 요소들에 의해 가려지지 않도록 z-index 설정 */
+    .wish-input-container {
+      position: relative;  /* 컨테이너가 위치를 지정하도록 */
+      z-index: 10;  /* 다른 요소들 위에 오도록 설정 */
+    }
+
+    .wish-input {
+      position: relative;  /* 입력창이 위치를 정확히 할 수 있도록 */
+      z-index: 10;  /* 다른 요소들 위로 표시 */
+    }
+
+    /* 지우기 버튼 스타일 */
+    .clear-btn {
+      padding: 10px;
+      font-size: 24px;  /* 아이콘 크기 조정 */
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: #ff5f5f;
+      transition: color 0.3s;
+    }
+
+    .clear-btn:hover {
+      color: #ff0000;  /* 호버 시 색상 변경 */
+    }
+
+    .clear-btn i {
+      pointer-events: none;  /* 아이콘 클릭 방지 */
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 눈송이들을 담을 컨테이너 -->
+  <div class="snowflakes-container"></div>
+
+  <!-- 'WISH' 큰 텍스트 -->
+  <div class="wish-text wish-text-1">
+    WISH
+  </div>
+  
+  <!-- 소원 입력창 -->
+  <div class="wish-input-container">
+    <input class="wish-input" id="wishInput" type="text" placeholder="Enter your wish...">
+  </div>
+
+  <!-- 지우기 버튼 (휴지통 아이콘) -->
+  <button class="clear-btn" id="clearBtn"><i class="fas fa-trash-alt"></i></button>
+
+  <!-- 'WISH' 큰 텍스트 -->
+  <div class="wish-text wish-text-2">
+    WISH
+  </div>
+
+  <!-- 소원 텍스트 박스 (왼쪽과 오른쪽에 표시될 것) -->
+  <div class="wish-box" id="wishBoxLeft" style="top: 20%; left: 10%;">Your Wish Here</div>
+  <div class="wish-box" id="wishBoxRight" style="top: 20%; right: 10%;">Your Wish Here</div>
+
+  <!-- 추가된 소원 텍스트 박스 5개 -->
+  <div class="wish-box" id="wishBox3" style="top: 40%; left: 15%;">Your Wish Here</div>
+  <div class="wish-box" id="wishBox4" style="top: 40%; right: 15%;">Your Wish Here</div>
+  <div class="wish-box" id="wishBox5" style="top: 60%; left: 25%;">Your Wish Here</div>
+  <div class="wish-box" id="wishBox6" style="top: 60%; right: 25%;">Your Wish Here</div>
+  <div class="wish-box" id="wishBox7" style="top: 80%; left: 35%;">Your Wish Here</div>
+
+  <script>
+    const wishInput = document.getElementById("wishInput");
+    const wishBoxes = [
+      document.getElementById("wishBoxLeft"),
+      document.getElementById("wishBoxRight"),
+      document.getElementById("wishBox3"),
+      document.getElementById("wishBox4"),
+      document.getElementById("wishBox5"),
+      document.getElementById("wishBox6"),
+      document.getElementById("wishBox7")
+    ];
+
+    let currentIndex = 0;
+
+    // 엔터를 누르면 소원을 입력하고 텍스트 박스를 비움
+    wishInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter" && wishInput.value.trim() !== "") {
+        wishBoxes[currentIndex].textContent = wishInput.value;
+        wishInput.value = "";  // 입력 후 텍스트 박스를 비운다.
+        currentIndex = (currentIndex + 1) % wishBoxes.length;
+      }
+    });
+
+    // 지우기 버튼을 클릭하면 모든 텍스트 박스를 초기화하고 입력창도 비운다.
+    document.getElementById("clearBtn").addEventListener("click", function () {
+      wishInput.value = ""; // 입력창 비우기
+      wishBoxes.forEach(box => box.textContent = "Your Wish Here"); // 텍스트 박스들 비우기
+      currentIndex = 0; // 다시 첫 번째 박스로 리셋
+    });
+
+    function makeDraggable(element) {
+      let isDragging = false;
+      let offsetX, offsetY;
+
+      element.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        offsetX = e.clientX - element.offsetLeft;
+        offsetY = e.clientY - element.offsetTop;
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          element.style.left = `${e.clientX - offsetX}px`;
+          element.style.top = `${e.clientY - offsetY}px`;
+        }
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    }
+
+    wishBoxes.forEach(makeDraggable);
+
+    function createSnowflakes() {
+      const container = document.querySelector('.snowflakes-container');
+      const numberOfSnowflakes = 100;
+
+      for (let i = 0; i < numberOfSnowflakes; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snow');
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(snowflake);
+      }
+    }
+
+    window.onload = () => {
+      createSnowflakes();
+    };
+  </script>
+
+</body>
+</html>
+s

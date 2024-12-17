@@ -1,0 +1,15 @@
+
+
+@font-face{
+	font-family: 'wish.otf';
+	src: url('wish.otf') format('opentype');
+	font-weight: 200 700;
+
+}
+
+body{
+	background: yellow;
+	font-family: 'Wish';
+	font-size: 100px
+	;
+    }

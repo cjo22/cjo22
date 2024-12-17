@@ -1,0 +1,231 @@
+@font-face {
+  font-family: 'Wish';
+  src: url('wish.otf') format('opentype');
+}
+
+/* 기본 페이지 스타일 */
+body {
+  font-family: 'Wish', sans-serif;
+  background-color: #4E4EFF; /* 배경색을 #4E4EFF로 설정 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  
+  /* 마우스 커서 이미지 설정 */
+  cursor: url('star2.png'), auto; /* 'star2.png' 이미지로 커서를 설정 */
+}
+
+/* 겹친 텍스트 공통 스타일 */
+.wish-text {
+  font-size: 15rem; /* 텍스트 크기를 크게 설정 */
+  font-weight: bold;
+  position: relative;
+  margin: 30px 0;
+}
+
+/* 바깥쪽 스트로크 */
+.wish-text::before {
+  content: 'WISH';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: transparent; /* 텍스트 색상은 투명 */
+  -webkit-text-stroke: 0.5px #000; /* 얇은 검은색 스트로크 */
+  z-index: -1; /* 스트로크를 텍스트 뒤로 */
+}
+
+/* 첫 번째 WISH 텍스트 (붉은색) */
+.wish-text-1 {
+  color: #FF4E4E;
+  position: relative;
+  top: 20vh; /* 화면에서 텍스트를 약간 내려줌 */
+}
+
+/* 두 번째 WISH 텍스트 (초록색) */
+.wish-text-2 {
+  color: #8DFFA9;
+  top: -8vh;
+}
+
+/* 소원 입력창 스타일 */
+.wish-input-container {
+  margin: 50px;
+}
+
+.wish-input {
+  padding: 10px;
+  font-size: 1.5rem;
+  width: 300px;
+  border-radius: 25px;
+  border: 2px solid #333;
+}
+
+/* 소원 텍스트 박스 스타일 */
+.wish-box {
+  position: absolute;
+  font-size: 1.2rem;
+  background-color: #fff;
+  color: #333; /* 텍스트 색상 설정 */
+  padding: 30px 20px;
+  border-radius: 0; /* 모서리를 각지게 설정 */
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+  border: none; /* 텍스트 박스의 스트로크 제거 */
+}
+
+/* 각 wish-box 색상 설정 (초록, 붉은색 번갈아 적용) */
+#wishBoxLeft, #wishBox3, #wishBox5, #wishBox7 {
+  background-color: #8DFFA9; /* 초록색 */
+}
+
+#wishBoxRight, #wishBox4, #wishBox6 {
+  background-color: #FF4E4E; /* 붉은색 */
+}
+
+/* 눈 내리는 애니메이션 스타일 */
+.snow {
+  position: absolute;
+  top: -5%; /* 화면 상단에 시작 */
+  left: 50%;
+  width: 20px; /* 눈 크기 */
+  height: 20px; /* 눈 크기 */
+  background-image: url('snow.png');
+  background-size: contain;
+  opacity: 0.8;
+  animation: snow 10s linear infinite, drift 5s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 눈 내리는 애니메이션 효과 (전체 화면에 눈이 내리도록) */
+@keyframes snow {
+  0% {
+    top: -5%; /* 화면 밖에서 시작 */
+  }
+  100% {
+    top: 100%; /* 화면 아래로 끝 */
+  }
+}
+
+/* 눈이 좌우로 움직이는 애니메이션 */
+@keyframes drift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50px); /* 왼쪽으로 이동 */
+  }
+  100% {
+    transform: translateX(50px); /* 오른쪽으로 이동 */
+  }
+}
+
+/* 눈송이들을 담을 컨테이너 */
+.snowflakes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 입력창이 다른 요소들에 의해 가려지지 않도록 z-index 설정 */
+.wish-input-container {
+  position: relative;  /* 컨테이너가 위치를 지정하도록 */
+  z-index: 10;  /* 다른 요소들 위에 오도록 설정 */
+}
+
+.wish-input {
+  position: relative;  /* 입력창이 위치를 정확히 할 수 있도록 */
+  z-index: 10;  /* 다른 요소들 위로 표시 */
+}
+
+/* 지우기 버튼 스타일 */
+.clear-btn {
+  padding: 10px;
+  font-size: 24px;  /* 아이콘 크기 조정 */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ff5f5f;
+  transition: color 0.3s;
+  position: fixed;
+  bottom: 20px;  /* 화면 하단에 고정 */
+  left: 50%;  /* 화면 중앙에 배치 */
+  transform: translateX(-50%);  /* 정확히 중앙에 배치 */
+}
+
+.clear-btn:hover {
+  color: #ff0000;  /* 호버 시 색상 변경 */
+}
+
+.clear-btn i {
+  pointer-events: none;  /* 아이콘 클릭 방지 */
+}
+
+/* 눈송이 커스터마이즈 */
+.snowflakes-container .snow {
+  animation-duration: 15s;
+
+  /* 소원 입력창 스타일 */
+.wish-input-container {
+  position: relative;
+  margin: 50px;
+  display: flex; /* 버튼과 입력창을 가로로 배치 */
+  align-items: center;
+}
+
+.wish-input {
+  padding: 10px;
+  font-size: 1.5rem;
+  width: 800px;  /* 길게 만들기 (원하는 길이에 맞게 조정 가능) */
+  height: 10px;  /* 얇게 만들기 */
+  border-radius: 25px;
+  border: 2px solid #333;
+  margin-right: 10px; /* 버튼과의 간격 설정 */
+}
+
+}
+
+
+
+.add-btn {
+  padding: 10px;
+  font-size: 1.5rem;
+  background-color: #4E4EFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #3d3dff;
+}
+
+}
+
+.add-btn {
+  padding: 10px;
+  font-size: 1.5rem;
+  background-color: #4E4EFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #3d3dff;
+}
+
