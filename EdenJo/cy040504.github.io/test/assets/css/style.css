@@ -93,8 +93,8 @@ body {
   position: absolute;
   top: -5%; /* 화면 상단에 시작 */
   left: 50%;
-  width: 20px; /* 눈 크기 */
-  height: 20px; /* 눈 크기 */
+  width: 40px; /* 눈 크기 */
+  height: 40px; /* 눈 크기 */
   background-image: url('snow.png');
   background-size: contain;
   opacity: 0.8;
