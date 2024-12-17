@@ -44,13 +44,13 @@ body {
 .wish-text-1 {
   color: #FF4E4E;
   position: relative;
-  top: 20vh; /* 화면에서 텍스트를 약간 내려줌 */
+  top: 15vh; /* 화면에서 텍스트를 약간 내려줌 */
 }
 
 /* 두 번째 WISH 텍스트 (초록색) */
 .wish-text-2 {
   color: #8DFFA9;
-  top: -10vh;
+  top: -6vh;
 }
 
 /* 소원 입력창 스타일 */
@@ -93,8 +93,8 @@ body {
   position: absolute;
   top: -5%; /* 화면 상단에 시작 */
   left: 50%;
-  width: 20px; /* 눈 크기 */
-  height: 20px; /* 눈 크기 */
+  width: 40px; /* 눈 크기 */
+  height: 40px; /* 눈 크기 */
   background-image: url('snow.png');
   background-size: contain;
   opacity: 0.8;
