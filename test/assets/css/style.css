@@ -28,7 +28,7 @@ body {
   position: relative;
   margin: 30px 0;
 }
-/tree: 
+
 /* 바깥쪽 스트로크 */
 .wish-text::before {
   content: 'WISH';
@@ -195,8 +195,6 @@ body {
 
 }
 
-
-
 .add-btn {
   padding: 10px;
   font-size: 1.5rem;
@@ -228,4 +226,3 @@ body {
 .add-btn:hover {
   background-color: #3d3dff;
 }
-
