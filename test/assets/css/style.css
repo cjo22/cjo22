@@ -44,13 +44,13 @@ body {
 .wish-text-1 {
   color: #FF4E4E;
   position: relative;
-  top: 15vh; /* 화면에서 텍스트를 약간 내려줌 */
+  top: 20vh; /* 화면에서 텍스트를 약간 내려줌 */
 }
 
 /* 두 번째 WISH 텍스트 (초록색) */
 .wish-text-2 {
   color: #8DFFA9;
-  top: -6vh;
+  top: -8vh;
 }
 
 /* 소원 입력창 스타일 */
@@ -195,22 +195,7 @@ body {
 
 }
 
-.add-btn {
-  padding: 10px;
-  font-size: 1.5rem;
-  background-color: #4E4EFF;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.add-btn:hover {
-  background-color: #3d3dff;
-}
-
-}
 
 .add-btn {
   padding: 10px;
@@ -226,66 +211,21 @@ body {
 .add-btn:hover {
   background-color: #3d3dff;
 }
-/* 트리 애니메이션을 위한 컨테이너 */
-.tree-container {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;  /* 트리가 클릭 이벤트를 방지하도록 설정 */
+
 }
 
-/* 트리 이미지 공통 스타일 */
-.tree-left, .tree-right {
-  position: absolute;
-  bottom: 0;
-  background-image: url('assets/css/tree.png'); /* tree.png 이미지 경로 */
-  background-size: cover;
-  background-position: center;
-  animation: swing 5s infinite ease-in-out, rotate 6s infinite linear;
+.add-btn {
+  padding: 10px;
+  font-size: 1.5rem;
+  background-color: #4E4EFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-/* 왼쪽 트리 (작은 크기) */
-.tree-left {
-  left: 10%;
-  animation-duration: 4s, 8s;
-  animation-delay: 0s, 0s;
-  width: 120px;
-  height: 200px; /* 트리 이미지의 크기 설정 */
+.add-btn:hover {
+  background-color: #3d3dff;
 }
 
-/* 오른쪽 트리 (큰 크기) */
-.tree-right {
-  right: 10%;
-  animation-duration: 6s, 10s;
-  animation-delay: 2s, 0s;
-  width: 200px;
-  height: 300px; /* 트리 이미지의 크기 설정 */
-}
-
-/* 트리 애니메이션: 흔들리기 */
-@keyframes swing {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(3deg);
-  }
-}
-
-/* 트리 애니메이션: 회전 */
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
